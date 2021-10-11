@@ -1,11 +1,10 @@
-var express = require("express"),
-    mongoose = require("mongoose"),
-    passport = require("passport"),
-    bodyParser = require("body-parser"),
-    LocalStrategy = require("passport-local"),
-    passportLocalMongoose =
-        require("passport-local-mongoose"),
-    User = require("./models/user");
+var express = require("express");
+var mongoose = require("mongoose");
+var passport = require("passport");
+var bodyParser = require("body-parser");
+var LocalStrategy = require("passport-local");
+var passportLocalMongoose =require("passport-local-mongoose");
+var User = require("./models/user");
  
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -58,7 +57,7 @@ app.post("/register", function (req, res) {
         if (err) {
             console.log(err);
             return res.render("register");
-        }
+        });
  
         passport.authenticate("local")(
             req, res, function () {
@@ -77,7 +76,7 @@ app.post("/login", passport.authenticate("local", {
     successRedirect: "/secret",
     failureRedirect: "/login"
 }), function (req, res) {
-});
+
  
 //Handling user logout
 app.get("/logout", function (req, res) {
@@ -88,7 +87,7 @@ app.get("/logout", function (req, res) {
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
     res.redirect("/login");
-}
+});
  
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
