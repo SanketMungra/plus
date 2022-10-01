@@ -1,18 +1,17 @@
 const fs=require('fs');
-// fs.writeFile('exp.txt',"this is chekc",(err)=>{
-//     if(err) console.log(err)
-//     else console.log('ha hale j ne')
-// });
-// fs.readFile('exp.txt','ascii',(err,file)=>{
-//     if(err) console.log(err)
-//     else console.log(file);
-// });
+const multer = require('multer');
 
-// fs.readdir('exp',(err,files)=>{
-//     if(err) console.log(err)
-//     else console.log(files);
-// })
+let diskStorage = multer.diskStorage({ // Noncompliant: no destination specified
+  filename: (req, file, cb) => {
+    const buf = crypto.randomBytes(20);
+    cb(null, buf.toString('hex'))
+  }
+});
 
+// This upload is not safe as no destination specified, /var/tmp or /tmp will be used
+let diskupload = multer({
+  storage: diskStorage,
+});
 fs.mkdir('nex',(err)=>{
     if(err) console.log(err)
     else console.log('sucess');
