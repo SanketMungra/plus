@@ -3,4 +3,10 @@
   age: 53,
   gender: 'male',
   car: 'Honda' 
+},
+{
+  name: 'sona',
+  age : 54,
+  gender : 'unknow',
+  car : 'Tesla'
 }
