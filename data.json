@@ -1,0 +1,6 @@
+{ 
+  name: 'babu',
+  age: 53,
+  gender: 'male',
+  car: 'Honda' 
+}
